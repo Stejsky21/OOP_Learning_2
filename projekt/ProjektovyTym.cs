@@ -1,10 +1,11 @@
-﻿using System;
+﻿using projekt.clenove;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace projekt
 {
-    class ProjektovyTym
+    public class ProjektovyTym
     {
         protected internal string nazev;
         protected internal ClenTymu[] clenove;
@@ -12,7 +13,7 @@ namespace projekt
         public ProjektovyTym(string nazev)
         {
             this.nazev = nazev;
-            this.clenove = new ClenTymu[0];
+            this.clenove = new ClenTymu[] { };
         }
 
         public void PridejClena(ClenTymu clen)
@@ -24,12 +25,26 @@ namespace projekt
                 result[i] = clenove[i];
             }
 
-            result[result.Length - 1] = clen;
-             
+            result[^1] = clen;
             clenove = result;
-
             clen.tym = this;
-        } 
+        }
+        
+        public void Programuj(string uloha)
+        {
+            for (int i = 0; i < clenove.Length; i++)
+            {
+                if (clenove[i] is Programator)
+                {
+                    var programator = clenove[i] as Programator;
+                    programator.SpracujUlohu(uloha);
+                }
+            }
+        }
 
+        public ClenTymu[] GetClenove()
+        {
+            return clenove;
+        }
     }
 }

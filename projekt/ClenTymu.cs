@@ -4,7 +4,7 @@ using System.Text;
 
 namespace projekt
 {
-    class ClenTymu
+    public abstract class ClenTymu
     {
         protected internal string jmeno;
         protected internal ProjektovyTym tym;
@@ -30,6 +30,8 @@ namespace projekt
             }
 
         }
+
+        public abstract void SpracujUlohu(string uloha);
              
     }
 }
